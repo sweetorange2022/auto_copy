@@ -1,7 +1,6 @@
 import time
-import pyautogui
-import clipboard
 from pynput import mouse, keyboard
+import pyperclip
 
 last_copied_text = ""
 last_copy_time = 0
@@ -15,13 +14,16 @@ def on_click(x, y, button, pressed):
     # 仅在鼠标左键释放时执行复制操作
     if button == mouse.Button.left and not pressed:
         # 发送 Ctrl+C 复制命令
-        pyautogui.hotkey('ctrl', 'c')
+        keyboard.Controller().press(keyboard.Key.ctrl)
+        keyboard.Controller().press('c')
+        keyboard.Controller().release('c')
+        keyboard.Controller().release(keyboard.Key.ctrl)
         
         # 等待剪贴板稳定
         time.sleep(0.1)
         
         # 获取当前剪贴板内容
-        current_copied_text = clipboard.paste()
+        current_copied_text = pyperclip.paste()
         
         # 仅在新复制的内容与上次不同的时候更新
         if current_copied_text != last_copied_text:
@@ -38,13 +40,16 @@ def on_click(x, y, button, pressed):
             return
 
         # 获取当前剪贴板内容
-        current_copied_text = clipboard.paste()
+        current_copied_text = pyperclip.paste()
         
         # 打印当前剪贴板内容（用于调试）
         print("右键复制的内容:", current_copied_text)
 
         # 发送 Ctrl+V 粘贴命令
-        pyautogui.hotkey('ctrl', 'v')
+        keyboard.Controller().press(keyboard.Key.ctrl)
+        keyboard.Controller().press('v')
+        keyboard.Controller().release('v')
+        keyboard.Controller().release(keyboard.Key.ctrl)
         
         # 更新上次复制时间
         last_copy_time = current_time
@@ -61,13 +66,16 @@ def on_release(key):
     global ctrl_a_pressed, last_copied_text, last_copy_time
     if ctrl_a_pressed and key == keyboard.KeyCode.from_char('a'):
         # 发送 Ctrl+C 复制命令
-        pyautogui.hotkey('ctrl', 'c')
+        keyboard.Controller().press(keyboard.Key.ctrl)
+        keyboard.Controller().press('c')
+        keyboard.Controller().release('c')
+        keyboard.Controller().release(keyboard.Key.ctrl)
         
         # 等待剪贴板稳定
         time.sleep(0.1)
         
         # 获取当前剪贴板内容
-        current_copied_text = clipboard.paste()
+        current_copied_text = pyperclip.paste()
         
         # 仅在新复制的内容与上次不同的时候更新
         if current_copied_text != last_copied_text:
