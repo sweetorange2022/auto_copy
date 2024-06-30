@@ -75,7 +75,7 @@
     可执行文件将位于 `dist` 目录中。
 
 ##
-  或者你也可以直接使用这个链接里的 Release : [auto_copy](https://github.com/sweetorange2022/auto_copy/releases/tag/A-auto-copy-tool-v1.0.0)
+  或者你也可以直接使用这个链接里的 Release : [auto_copy](https://github.com/sweetorange2022/auto_copy/releases/tag/Aautocopytool-v1.0.1)
   下载后双击可以直接使用
 
 ## 灵感来源：
